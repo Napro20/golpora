@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Golpora</title>
+    <style>
+        :root {
+            --light-yellow: #FFE56C;
+            --golden: #FBAF3F;
+            --teal: #64C6C7;
+            --coral: #F88984;
+            --salmon: #EF6F6C;
+            --bg: #fffdf6;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --max-width: 1100px;
+            --gap: 18px;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background: linear-gradient(180deg, var(--bg), #fff);
+            color: #222;
+        }
+
+        .wrap {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--golden), var(--light-yellow));
+            color: #3b2b00;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .write-btn {
+            font-weight: 600;
+            margin-left: 6px;
+            color: #fff;
+            background: var(--teal);
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--salmon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .settings {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        /* Submenu */
+        .subnav {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 8px;
+            background: rgba(100, 198, 199, 0.06);
+            border-radius: 10px;
+            align-items: center;
+        }
+
+        .subnav a {
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #234;
+            font-weight: 600;
+        }
+
+        .subnav a.active {
+            background: var(--golden);
+            color: #fff;
+        }
+
+        /* Content Layout */
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--gap);
+            margin-top: 20px;
+        }
+
+        /* Story Section */
+        .main-col {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .story-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 16px;
+            border: 2px solid rgba(0, 0, 0, 0.03);
+            height: 400px;
+            overflow-y: auto;
+            font-size: 16px;
+            line-height: 1.6;
+            color: #222;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        .like-btn,
+        .comment-btn {
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .like-btn {
+            background: var(--coral);
+            color: #fff;
+        }
+
+        .comment-btn {
+            background: var(--golden);
+            color: #fff;
+        }
+
+        .emoji-popup {
+            display: none;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .emoji-popup span {
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        /* Right Column */
+        .right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .info-card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .info-card .title {
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 6px;
+        }
+
+        .info-card .meta {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: #444;
+        }
+
+        .feedback-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 12px;
+            box-shadow: var(--card-shadow);
+            font-size: 14px;
+        }
+
+        .feedback-box .label {
+            font-weight: 700;
+        }
+
+        .overall-score {
+            margin-top: 8px;
+            padding: 12px;
+            background: var(--teal);
+            color: #fff;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        /* Back Button */
+        .back-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .back-btn {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            background: #fff;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        @media(max-width:980px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+
+            .story-box {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo">Golpora</div>
+                <div style="display:flex;flex-direction:column">
+                    <div style="font-size:14px; color:#444; font-weight:700">Write your story</div>
+                    <div style="font-size:12px; color:#777">Share your short fiction, memoir or scene</div>
+                </div>
+            </div>
+
+            <div class="right-controls">
+                <button class="write-btn" onclick="location.href='#'">+ New Story</button>
+                <div class="settings" title="Settings" onclick="toggleSettings()">
+                    <svg width="18" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="3" y="5" width="18" height="2" rx="1" fill="#333" />
+                        <rect x="3" y="11" width="18" height="2" rx="1" fill="#333" />
+                        <rect x="3" y="17" width="18" height="2" rx="1" fill="#333" />
+                    </svg>
+                </div>
+
+                <div class="dropdown">
+                    <div class="profile" onclick="toggleDropdown()">
+                        <div class="avatar">G</div>
+                        <div style="font-size:13px; color:#333">Nafiul</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Submenu -->
+        <nav class="subnav">
+            <a href="#">Home</a>
+            <a href="story2.html" class="active">Stories</a>
+            <a href="doc.html">Documentary</a>
+            <a href="battle1.html">Battle</a>
+        </nav>
+
+        <!-- Content -->
+        <main class="content">
+            <section class="main-col">
+                <div class="story-box" id="storyBox">
+                    <p><strong>শহরের শেষ বাস</strong></p>
+                    <p>সকালবেলা রানা তার কাজের জন্য বাসে চড়ে।
+                        বাসটি খুব ব্যস্ত, মানুষরা ঠাসাঠাসি ভরে।
+                        হঠাৎ বাস থেমে গেল, ড্রাইভার বলে, “ইঞ্জিন সমস্যা।”
+                        সব যাত্রী হতাশ হয়ে দাঁড়ালো। রানা নেমে Rickshaw ধরল।
+                        শেষে সে কাজের জায়গায় পৌঁছাল সময়মতো, আর মন শান্ত।</p>
+                </div>
+
+                <div class="action-row">
+                    <button class="like-btn" onclick="toggleEmojis()">❤️ Like</button>
+                    <button class="comment-btn" onclick="toggleComment()">💬 Comment</button>
+                </div>
+
+                <div class="emoji-popup" id="emojiPopup">
+                    <span onclick="react('👍')">👍</span>
+                    <span onclick="react('❤️')">❤️</span>
+                    <span onclick="react('😂')">😂</span>
+                    <span onclick="react('😮')">😮</span>
+                    <span onclick="react('😢')">😢</span>
+                </div>
+
+                <div id="commentSection" style="display:none; margin-top:12px;">
+                    <textarea id="commentInput" rows="3"
+                        style="width:100%; border-radius:10px; padding:8px;"></textarea>
+                    <button class="comment-btn" style="margin-top:6px;" onclick="addComment()">Post Comment</button>
+                    <div id="commentsList" style="margin-top:10px;"></div>
+                </div>
+            </section>
+
+            <aside class="right-col">
+                <div class="info-card">
+                    <div class="title">শহরের শেষ বাস</div>
+                    <div class="meta">Posted: <strong>24 Sept 2025</strong></div>
+                    <div class="meta">By: <strong>Nafiul</strong></div>
+                </div>
+
+                <div class="feedback-box">
+                    <div class="label">Creativity ⭐⭐⭐⭐☆</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Story Flow ⭐⭐⭐☆☆</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Language ⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Engagement ⭐⭐⭐⭐☆</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Overall Impact ⭐⭐⭐⭐☆</div>
+                </div>
+
+                <div class="overall-score" onclick="window.location.href='ratings.html'">View Overall Score</div>
+            </aside>
+        </main>
+
+        <div class="back-wrap">
+            <button class="back-btn" onclick="history.back()">← Back To Stories</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown() {
+            document.querySelector('.dropdown-menu')?.classList.toggle('show');
+        }
+
+        function toggleSettings() {
+            alert('Settings clicked — ekhane apni settings modal add korte paren.');
+        }
+
+        function toggleEmojis() {
+            const popup = document.getElementById("emojiPopup");
+            popup.style.display = popup.style.display === "flex" ? "none" : "flex";
+        }
+
+        function react(emoji) {
+            alert("You reacted with " + emoji);
+        }
+
+        function toggleComment() {
+            const c = document.getElementById("commentSection");
+            c.style.display = c.style.display === "none" ? "block" : "none";
+        }
+
+        function addComment() {
+            const input = document.getElementById("commentInput");
+            const list = document.getElementById("commentsList");
+            if (input.value.trim() !== "") {
+                const p = document.createElement("p");
+                p.textContent = input.value;
+                list.appendChild(p);
+                input.value = "";
+            }
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Golpora</title>
+    <style>
+        :root {
+            --light-yellow: #FFE56C;
+            --golden: #FBAF3F;
+            --teal: #64C6C7;
+            --coral: #F88984;
+            --salmon: #EF6F6C;
+            --bg: #fffdf6;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --max-width: 1100px;
+            --gap: 18px;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background: linear-gradient(180deg, var(--bg), #fff);
+            color: #222;
+        }
+
+        .wrap {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--golden), var(--light-yellow));
+            color: #3b2b00;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .write-btn {
+            font-weight: 600;
+            margin-left: 6px;
+            color: #fff;
+            background: var(--teal);
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer
+        }
+
+        .profile .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--salmon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700
+        }
+
+        /* Submenu */
+        .subnav {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 8px;
+            background: rgba(100, 198, 199, 0.06);
+            border-radius: 10px;
+            align-items: center
+        }
+
+        .subnav a {
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #234;
+            font-weight: 600
+        }
+
+        .subnav a.active {
+            background: var(--golden);
+            color: #fff
+        }
+
+        /* Caption */
+        .caption {
+            margin-top: 22px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Stories side by side */
+        .stories {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--gap);
+            margin-top: 22px
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            min-height: 150px;
+            width: 260px;
+        }
+
+        .card .thumb {
+            height: 120px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--light-yellow), var(--teal));
+            display: flex;
+            align-items: flex-end;
+            padding: 8px;
+            color: #2b2b2b;
+            font-weight: 700
+        }
+
+        .card h3 {
+            margin: 10px 0 6px;
+            font-size: 16px
+        }
+
+        .card p {
+            margin: 0 0 10px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.3
+        }
+
+        .meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 13px;
+            color: #666
+        }
+
+        /* VS text */
+        .vs {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--salmon);
+            text-align: center;
+        }
+
+        /* Category Section */
+        .categories {
+            margin: 28px 0;
+            text-align: center
+        }
+
+        .categories h4 {
+            font-size: 18px;
+            margin-bottom: 12px
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px
+        }
+
+        .options label {
+            background: #f1f1f1;
+            padding: 10px 16px;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600
+        }
+
+        .options input {
+            margin-right: 6px
+        }
+
+        /* Buttons */
+        .actions {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 24px
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .btn.primary {
+            background: var(--salmon);
+            color: #fff
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 2px solid rgba(0, 0, 0, 0.06)
+        }
+
+        /* Result */
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: var(--radius);
+            background: #fff;
+            box-shadow: var(--card-shadow);
+        }
+
+        .winner {
+            margin-bottom: 14px;
+            padding: 10px;
+            border-left: 5px solid var(--teal);
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+
+        .winner strong {
+            color: #222;
+        }
+
+        .category-win {
+            font-size: 14px;
+            color: #555;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo">Golpora</div>
+                <div style="display:flex;flex-direction:column">
+                    <div style="font-size:14px; color:#444; font-weight:700">Write your story</div>
+                    <div style="font-size:12px; color:#777">Share your short fiction, memoir or scene</div>
+                </div>
+            </div>
+
+            <div class="right-controls">
+                <button class="write-btn">+ New Story</button>
+                <div class="profile">
+                    <div class="avatar">G</div>
+                    <div style="font-size:13px; color:#333">Nafiul</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Submenu -->
+        <nav class="subnav">
+            <a href="#">Home</a>
+            <a href="Story1.html">Stories</a>
+            <a href="doc.html">Documentary</a>
+            <a href="battle2.html" class="active">Battle</a>
+        </nav>
+
+        <!-- Caption -->
+        <div class="caption">🔥 The Battle Begins — Who will rise as the ultimate storyteller?</div>
+
+        <!-- Selected Stories (Auto layout with VS) -->
+        <section class="stories" id="storiesContainer"></section>
+
+        <!-- Categories -->
+        <div class="categories" id="categorySection">
+            <h4>Select Battle Categories</h4>
+            <div class="options">
+                <label><input type="checkbox" value="Creativity"> Creativity</label>
+                <label><input type="checkbox" value="Emotion"> Emotion</label>
+                <label><input type="checkbox" value="Popularity"> Popularity</label>
+                <label><input type="checkbox" value="Storytelling"> Storytelling</label>
+            </div>
+        </div>
+
+        <!-- Start Button -->
+        <div class="actions" id="actionSection">
+            <button class="btn primary" onclick="showResult()">⚔️ Start Battle</button>
+        </div>
+
+        <!-- Result -->
+        <div id="resultBox"></div>
+
+        <!-- Back -->
+        <div style="text-align:center; margin-top:18px">
+            <button class="btn ghost" onclick="location.href='battle.html'">← Back to Battle Page</button>
+        </div>
+    </div>
+
+    <script>
+        const selected = [
+            {
+                title: "শহরের শেষ বাস",
+                desc: "রাতের ভেতরে শহর যেন শেষ হয়ে এসেছে...",
+                likes: "❤ 124",
+                views: "👁️ 3.1k"
+            },
+            {
+                title: "চিঠি না আসা দিন",
+                desc: "চিঠিটা যে তাওড়ানোর মতো ছিল...",
+                likes: "❤ 89",
+                views: "👁️ 1.2k"
+            }
+        ];
+
+        const container = document.getElementById("storiesContainer");
+
+        selected.forEach((story, idx) => {
+            const card = document.createElement("article");
+            card.className = "card";
+            card.innerHTML = `
+                <div class="thumb">${story.title}</div>
+                <p>${story.desc}</p>
+                <div class="meta">
+                    <div>${story.likes}</div>
+                    <div>${story.views}</div>
+                </div>
+            `;
+            container.appendChild(card);
+
+            if (idx < selected.length - 1) {
+                const vs = document.createElement("div");
+                vs.className = "vs";
+                vs.textContent = "⚔️ VS ⚔️";
+                container.appendChild(vs);
+            }
+        });
+
+        function showResult() {
+            // hide category and start button
+            document.getElementById("categorySection").style.display = "none";
+            document.getElementById("actionSection").style.display = "none";
+
+            // show result
+            const result = document.getElementById("resultBox");
+            result.innerHTML = `
+        <div class="result">
+          <div class="winner">
+            🏆 <strong>Winner: Story 1</strong> <br>
+            <small>Posted by Nafiul</small><br>
+            <div class="category-win">Won in: Creativity, Emotion</div>
+          </div>
+          <div class="winner">
+            🥈 <strong>Runner-up: Story 2</strong> <br>
+            <small>Posted by Ayesha</small><br>
+            <div class="category-win">Won in: Popularity</div>
+          </div>
+        </div>
+      `;
+        }
+    </script>
+</body>
+
+</html>

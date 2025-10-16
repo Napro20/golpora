@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Golpora</title>
+    <style>
+        :root {
+            --light-yellow: #FFE56C;
+            --golden: #FBAF3F;
+            --teal: #64C6C7;
+            --coral: #F88984;
+            --salmon: #EF6F6C;
+            --bg: #fffdf6;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --max-width: 1100px;
+            --gap: 18px;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background: linear-gradient(180deg, var(--bg), #fff);
+            color: #222;
+        }
+
+        .wrap {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--golden), var(--light-yellow));
+            color: #3b2b00;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .write-btn {
+            font-weight: 600;
+            color: #fff;
+            background: var(--teal);
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--salmon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .subnav {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 8px;
+            background: rgba(100, 198, 199, 0.06);
+            border-radius: 10px;
+        }
+
+        .subnav a {
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #234;
+            font-weight: 600;
+        }
+
+        .subnav a.active {
+            background: var(--golden);
+            color: #fff;
+        }
+
+        main.content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: var(--gap);
+            margin-top: 20px;
+            align-items: flex-start;
+        }
+
+        .story-box {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 16px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .player-top {
+            display: flex;
+            gap: 18px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .play-btn {
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--golden));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.18s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.04);
+        }
+
+        .play-btn svg {
+            width: 40px;
+            height: 40px;
+            fill: #fff;
+        }
+
+        .audio-wave {
+            display: flex;
+            gap: 6px;
+            height: 46px;
+            justify-content: center;
+            align-items: flex-end;
+            padding: 4px 8px;
+            opacity: 0;
+            transform: translateY(8px);
+            transition: opacity 0.18s, transform 0.18s;
+        }
+
+        .audio-wave.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .bar {
+            width: 8px;
+            height: 10px;
+            background: linear-gradient(180deg, var(--teal), var(--golden));
+            border-radius: 6px;
+            transform-origin: bottom;
+            animation: bounce 900ms ease-in-out infinite;
+        }
+
+        .bar:nth-child(2) {
+            animation-delay: 80ms;
+        }
+
+        .bar:nth-child(3) {
+            animation-delay: 160ms;
+        }
+
+        .bar:nth-child(4) {
+            animation-delay: 240ms;
+        }
+
+        .bar:nth-child(5) {
+            animation-delay: 320ms;
+        }
+
+        .bar:nth-child(6) {
+            animation-delay: 380ms;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: scaleY(0.35);
+            }
+
+            50% {
+                transform: scaleY(2.4);
+            }
+        }
+
+        .progress-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            padding: 8px 12px;
+        }
+
+        .time {
+            font-size: 13px;
+            color: #444;
+            width: 56px;
+            text-align: center;
+            flex: 0 0 56px;
+        }
+
+        .progress {
+            --h: 8px;
+            flex: 1;
+            height: var(--h);
+            background: rgba(0, 0, 0, 0.06);
+            border-radius: 100px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .filled {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            background: linear-gradient(90deg, var(--teal), var(--golden));
+            width: 0%;
+            border-radius: 100px;
+            transition: width 0.08s linear;
+        }
+
+        .seek {
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            appearance: none;
+            background: transparent;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .subtitle-box {
+            font-size: 16px;
+            line-height: 1.6;
+            color: #333;
+            background: rgba(0, 0, 0, 0.04);
+            border-radius: 10px;
+            padding: 12px;
+            width: 100%;
+            height: 160px;
+            overflow-y: auto;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 14px;
+            margin-top: 8px;
+        }
+
+        .like-btn,
+        .comment-btn {
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .like-btn {
+            background: var(--coral);
+            color: #fff;
+        }
+
+        .comment-btn {
+            background: var(--golden);
+            color: #fff;
+        }
+
+        .emoji-popup {
+            display: none;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .emoji-popup span {
+            cursor: pointer;
+            font-size: 22px;
+        }
+
+        aside.right-col {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .info-card,
+        .feedback-box {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .overall-score {
+            margin-top: 8px;
+            padding: 12px;
+            background: var(--teal);
+            color: #fff;
+            font-weight: 800;
+            text-align: center;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .back-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 28px;
+        }
+
+        .back-btn {
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: 2px solid rgba(0, 0, 0, 0.06);
+            background: #fff;
+            font-weight: 800;
+            cursor: pointer;
+        }
+
+        @media(max-width:980px) {
+            main.content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo">Golpora</div>
+                <div style="display:flex;flex-direction:column">
+                    <div style="font-size:14px;color:#444;font-weight:700">Write your story</div>
+                    <div style="font-size:12px;color:#777">Share your short fiction, memoir or scene</div>
+                </div>
+            </div>
+            <div class="right-controls">
+                <button class="write-btn">+ New Story</button>
+                <div class="avatar">G</div>
+            </div>
+        </header>
+
+        <nav class="subnav">
+            <a href="#">Home</a>
+            <a href="story3.html" class="active">Stories</a>
+            <a href="doc.html">Documentary</a>
+            <a href="battle1.html">Battle</a>
+        </nav>
+
+        <main class="content">
+            <section class="main-col">
+                <div class="story-box">
+                    <div style="font-weight:800;font-size:18px;">শহরের শেষ বাস (Audio)</div>
+                    <div class="player-top">
+                        <div class="play-btn" id="playBtn" aria-label="Play/Pause">
+                            <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                        <div class="audio-wave" id="audioWave">
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                            <div class="bar"></div>
+                        </div>
+                    </div>
+                    <audio id="audioPlayer" src="audio/shohorer-shesh-bash.mp3" preload="metadata"></audio>
+                    <div class="progress-row">
+                        <div class="time" id="currentTime">0:00</div>
+                        <div class="progress" id="progressBar">
+                            <div class="filled" id="filled"></div>
+                            <input type="range" step="0.1" min="0" max="100" value="0" class="seek" id="seekRange">
+                        </div>
+                        <div class="time" id="duration">0:00</div>
+                    </div>
+                    <div class="subtitle-box" id="subtitles" aria-live="polite">
+                        <p>অডিও গল্প শুরু হচ্ছে...</p>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button class="like-btn" onclick="toggleEmojis()">❤️ Like</button>
+                    <button class="comment-btn" onclick="toggleComment()">💬 Comment</button>
+                </div>
+
+                <div class="emoji-popup" id="emojiPopup">
+                    <span onclick="react('👍')">👍</span>
+                    <span onclick="react('❤️')">❤️</span>
+                    <span onclick="react('😂')">😂</span>
+                    <span onclick="react('😮')">😮</span>
+                    <span onclick="react('😢')">😢</span>
+                </div>
+
+                <div id="commentSection" style="display:none; margin-top:12px;">
+                    <textarea id="commentInput" rows="3" style="width:100%;border-radius:10px;padding:8px;"></textarea>
+                    <button class="comment-btn" style="margin-top:6px;" onclick="addComment()">Post Comment</button>
+                    <div id="commentsList" style="margin-top:10px;"></div>
+                </div>
+            </section>
+
+            <aside class="right-col">
+                <div class="info-card">
+                    <div class="title">শহরের শেষ বাস (Audio)</div>
+                    <div class="meta">Posted: <strong>24 Sept 2025</strong></div>
+                    <div class="meta">By: <strong>Nafiul</strong></div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Narration ⭐⭐⭐⭐☆</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Audio Quality ⭐⭐⭐⭐☆</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Emotion ⭐⭐⭐⭐⭐</div>
+                </div>
+                <div class="feedback-box">
+                    <div class="label">Story Flow ⭐⭐⭐⭐☆</div>
+                </div>
+                <div class="overall-score" onclick="window.location.href='ratings.html'">View Overall Score</div>
+            </aside>
+        </main>
+
+        <div class="back-wrap">
+            <button class="back-btn" onclick="history.back()">← Back To Stories</button>
+        </div>
+    </div>
+
+    <script>
+        const playBtn = document.getElementById("playBtn");
+        const playIcon = document.getElementById("playIcon");
+        const audio = document.getElementById("audioPlayer");
+        const subtitles = document.getElementById("subtitles");
+        const wave = document.getElementById("audioWave");
+        const currentTimeEl = document.getElementById("currentTime");
+        const durationEl = document.getElementById("duration");
+        const filled = document.getElementById("filled");
+        const seekRange = document.getElementById("seekRange");
+        const progressBar = document.getElementById("progressBar");
+
+        const subs = [
+            { time: 0, text: "রানার শহরের শেষ বাসে ওঠা..." },
+            { time: 4, text: "বাস থেমে গেল, ড্রাইভার বলল — ইঞ্জিন সমস্যা।" },
+            { time: 9, text: "রানা হাসল, রিকশা নিল আর পথ চলতে লাগল।" },
+            { time: 15, text: "গল্প শেষ — জীবনে ধৈর্যই আসল শিক্ষা।" }
+        ];
+
+        function formatTime(s) { if (isNaN(s) || s === Infinity) return "0:00"; const m = Math.floor(s / 60); const sec = Math.floor(s % 60); return `${m}:${sec.toString().padStart(2, '0')}`; }
+
+        audio.addEventListener('loadedmetadata', () => { durationEl.textContent = formatTime(audio.duration); seekRange.max = Math.floor(audio.duration); });
+
+        playBtn.addEventListener("click", () => {
+            if (audio.paused) { audio.play().catch(e => console.warn("play() failed:", e)); playIcon.innerHTML = '<path d="M6 19h4V5H6zm8-14v14h4V5z"/>'; wave.classList.add("active"); }
+            else { audio.pause(); playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; wave.classList.remove("active"); }
+        });
+
+        audio.addEventListener("timeupdate", () => {
+            const c = audio.currentTime; filled.style.width = (audio.duration ? (c / audio.duration * 100) : 0) + "%";
+            seekRange.value = Math.floor(c); currentTimeEl.textContent = formatTime(c);
+            for (let i = subs.length - 1; i >= 0; i--) { if (c >= subs[i].time) { if (subtitles.dataset.current !== String(i)) { subtitles.dataset.current = String(i); subtitles.style.opacity = 0; setTimeout(() => { subtitles.innerHTML = `<p>${subs[i].text}</p>`; subtitles.style.opacity = 1; subtitles.scrollTop = subtitles.scrollHeight; }, 160); } break; } }
+        });
+
+        audio.addEventListener("ended", () => { playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; wave.classList.remove("active"); filled.style.width = "100%"; currentTimeEl.textContent = formatTime(audio.duration); subtitles.innerHTML = "<p>🔚 গল্প শেষ</p>"; });
+
+        progressBar.addEventListener('click', (e) => { const rect = progressBar.getBoundingClientRect(); const x = e.clientX - rect.left; const pct = Math.max(0, Math.min(1, x / rect.width)); audio.currentTime = pct * (audio.duration || 0); });
+
+        seekRange.addEventListener('input', (e) => { audio.currentTime = Number(e.target.value); });
+
+        playBtn.addEventListener('keydown', (e) => { if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); playBtn.click(); } });
+
+        function toggleEmojis() { const p = document.getElementById("emojiPopup"); p.style.display = p.style.display === "flex" ? "none" : "flex"; }
+        function react(e) { alert("You reacted with " + e); }
+        function toggleComment() { const c = document.getElementById("commentSection"); c.style.display = c.style.display === "none" ? "block" : "none"; }
+        function addComment() { const i = document.getElementById("commentInput"); const l = document.getElementById("commentsList"); if (i.value.trim() !== "") { const p = document.createElement("p"); p.textContent = i.value; l.appendChild(p); i.value = ""; } }
+
+        document.addEventListener('visibilitychange', () => { if (document.hidden && !audio.paused) { audio.pause(); playIcon.innerHTML = '<path d="M8 5v14l11-7z"/>'; wave.classList.remove("active"); } });
+    </script>
+</body>
+
+</html>

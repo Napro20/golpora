@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Golpora</title>
+    <style>
+        :root {
+            --light-yellow: #fffaf0;
+            --golden: #FBAF3F;
+            --teal: #64C6C7;
+            --coral: #F88984;
+            --salmon: #EF6F6C;
+            --bg: #fffdf6;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 14px;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(180deg, #fffdf8, #fff);
+            color: #222;
+        }
+
+        .wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: var(--light-yellow);
+            padding: 14px 24px;
+            border-radius: 14px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--golden), var(--light-yellow));
+            color: #3b2b00;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .nav-options {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.03);
+            padding: 10px 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all .3s ease;
+        }
+
+        .nav-item:hover {
+            background: var(--teal);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Profile section */
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .profile-circle {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff7a7a, #f35b5b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .profile span {
+            font-weight: 600;
+            font-size: 14px;
+            color: #333;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 34px;
+            font-weight: 800;
+            color: #333;
+        }
+
+        .hero p {
+            color: #555;
+            font-size: 16px;
+            max-width: 650px;
+            margin: 10px auto 30px;
+        }
+
+        /* ACTION CARDS */
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .action-card {
+            background: linear-gradient(135deg, var(--teal), var(--golden));
+            color: #fff;
+            box-shadow: var(--card-shadow);
+            border-radius: var(--radius);
+            padding: 30px;
+            text-align: center;
+            width: 280px;
+            transition: all .25s ease;
+            cursor: pointer;
+        }
+
+        .action-card:nth-child(2) {
+            background: linear-gradient(135deg, var(--coral), var(--salmon));
+        }
+
+        .action-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .action-card .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        .action-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .action-card p {
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 70px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        @media (max-width:600px) {
+            .actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .action-card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo">Golpora</div>
+                <div style="display:flex;flex-direction:column">
+                    <div style="font-size:14px; color:#444; font-weight:700">Where stories live</div>
+                    <div style="font-size:12px; color:#777">Your imagination, your voice</div>
+                </div>
+            </div>
+
+            <div class="nav-options">
+                <div class="nav-item" onclick="window.location.href='stories.html'">🖋️ <span>Write Story</span></div>
+                <div class="nav-item" onclick="window.location.href='justify.html'">🧠 <span>Justify Narrative</span>
+                </div>
+
+                <!-- Profile Section -->
+                <div class="profile" onclick="window.location.href='profile.html'">
+                    <div class="profile-circle">G</div>
+                    <span>Nafiul</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Golpora : A Space for Writers & Dreamers</h1>
+            <p>Write your story, explore others, compare, vote, and analyze your creative writing.<br>
+                Inspire others through storytelling and justify your narrative skills with our AI-based narrative
+                evaluation.</p>
+        </section>
+
+        <!-- Action Cards -->
+        <section class="actions">
+            <div class="action-card" onclick="window.location.href='stories.html'">
+                <div class="icon">✍️</div>
+                <h3>Write Your Story</h3>
+                <p>Start writing your own creative piece, share your imagination, and inspire others through your words.
+                </p>
+            </div>
+
+            <div class="action-card" onclick="window.location.href='justify.html'">
+                <div class="icon">🧠</div>
+                <h3>Justify Your Narrative</h3>
+                <p>Analyze your story’s structure and style, ensuring your narrative follows literary standards and
+                    emotional flow.</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            © 2025 Golpora | Created for creative storytelling and narrative expression.
+        </footer>
+    </div>
+
+    <script>
+        document.querySelectorAll('.action-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const sound = new Audio('https://cdn.pixabay.com/download/audio/2022/03/15/audio_40d5d5a9bb.mp3?filename=hover-112552.mp3');
+                sound.volume = 0.08;
+                sound.play();
+            });
+        });
+    </script>
+</body>
+
+</html>

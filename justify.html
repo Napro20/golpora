@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Creative Answer Submission | Golpora</title>
+    <style>
+        /* === তোমার দেওয়া color palette ও navbar style === */
+        :root {
+            --light-yellow: #FFE56C;
+            --golden: #FBAF3F;
+            --teal: #64C6C7;
+            --coral: #F88984;
+            --salmon: #EF6F6C;
+            --bg: #fffdf6;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --max-width: 1100px;
+            --gap: 18px;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background: linear-gradient(180deg, var(--bg), #fff);
+            color: #222;
+        }
+
+        .wrap {
+            max-width: var(--max-width);
+            margin: 0 auto
+        }
+
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--golden), var(--light-yellow));
+            color: #3b2b00;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .write-btn {
+            font-weight: 600;
+            margin-left: 6px;
+            color: #fff;
+            background: var(--teal);
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer
+        }
+
+        .profile .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--salmon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700
+        }
+
+        .settings {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px;
+            border-radius: 10px;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0.03)
+        }
+
+        .subnav {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 8px;
+            background: rgba(100, 198, 199, 0.06);
+            border-radius: 10px;
+            align-items: center
+        }
+
+        .subnav a {
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #234;
+            font-weight: 600
+        }
+
+        .subnav a.active {
+            background: var(--golden);
+            color: #fff
+        }
+
+        /* === form section === */
+        main {
+            background: #fff;
+            border-radius: var(--radius);
+            box-shadow: var(--card-shadow);
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px
+        }
+
+        .step {
+            margin-bottom: 20px
+        }
+
+        .step label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: block
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            resize: none;
+            background: #fafafa
+        }
+
+        input[type=file] {
+            margin-top: 10px
+        }
+
+        button.submit-btn {
+            background: var(--teal);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: block;
+            margin: 25px auto;
+            cursor: pointer
+        }
+
+        button.submit-btn:hover {
+            opacity: .9
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo">Golpora</div>
+                <div style="display:flex;flex-direction:column">
+                    <div style="font-size:14px;color:#444;font-weight:700">Write your story</div>
+                    <div style="font-size:12px;color:#777">Share your short fiction, memoir or scene</div>
+                </div>
+            </div>
+            <div class="right-controls">
+                <button class="write-btn" onclick="location.href='#'">+ New Story</button>
+                <div class="profile">
+                    <div class="avatar">G</div>
+                    <div style="font-size:13px;color:#333">Nafiul</div>
+                </div>
+            </div>
+        </header>
+
+        <nav class="subnav">
+            <a href="index.html">Home</a>
+            <a href="justify.html" class="active">Submission</a>
+            <a href="doc2.html">Documentation</a>
+        </nav>
+
+        <main>
+            <h2>সৃজনশীল প্রশ্নের উত্তর সাবমিশন</h2>
+            <form>
+                <div class="step">
+                    <label>ধাপ ১: উদ্দীপক বোঝা</label>
+                    <textarea placeholder="উদ্দীপকের মূল বক্তব্য লিখুন..."></textarea>
+                </div>
+                <div class="step">
+                    <label>ধাপ ২: প্রশ্নের বিশ্লেষণ</label>
+                    <textarea placeholder="প্রশ্নে কী জানতে চায় তা বিশ্লেষণ করুন..."></textarea>
+                </div>
+                <div class="step">
+                    <label>ধাপ ৩: নিজের মতামত ও ব্যাখ্যা</label>
+                    <textarea placeholder="নিজের যুক্তি ও ব্যাখ্যা লিখুন..."></textarea>
+                </div>
+                <div class="step">
+                    <label>ধাপ ৪: উপসংহার</label>
+                    <textarea placeholder="উত্তরের সারাংশ দিন..."></textarea>
+                </div>
+                <div class="step">
+                    <label>অতিরিক্ত PDF আপলোড (ঐচ্ছিক)</label>
+                    <input type="file" accept=".pdf">
+                </div>
+                <button class="submit-btn">Submit Answer</button>
+            </form>
+        </main>
+    </div>
+</body>
+
+</html>

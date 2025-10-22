@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="bn">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Golpora</title>
+    <style>
+        :root {
+            --light-yellow: #FFE56C;
+            --golden: #FBAF3F;
+            --teal: #64C6C7;
+            --coral: #F88984;
+            --salmon: #EF6F6C;
+            --bg: #fffdf6;
+            --card-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --max-width: 1100px;
+            --gap: 18px;
+            font-family: 'Segoe UI', Roboto, 'Noto Sans', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 24px;
+            background: linear-gradient(180deg, var(--bg), #fff);
+            color: #222;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .wrap {
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .logo {
+            background: linear-gradient(135deg, var(--golden), var(--light-yellow));
+            color: #3b2b00;
+            font-weight: 700;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 20px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .write-btn {
+            font-weight: 600;
+            margin-left: 6px;
+            color: #fff;
+            background: var(--teal);
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer
+        }
+
+        .right-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer
+        }
+
+        .profile .avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--coral), var(--salmon));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700
+        }
+
+        /* Submenu */
+        .subnav {
+            display: flex;
+            gap: 12px;
+            margin-top: 14px;
+            padding: 8px;
+            background: rgba(100, 198, 199, 0.06);
+            border-radius: 10px;
+            align-items: center
+        }
+
+        .subnav a {
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #234;
+            font-weight: 600
+        }
+
+        .subnav a.active {
+            background: var(--golden);
+            color: #fff
+        }
+
+        /* Caption */
+        .caption {
+            margin-top: 22px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            color: #333;
+        }
+
+        /* Selection box */
+        .selection {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 22px auto;
+            justify-content: center;
+        }
+
+        .small-box {
+            width: 60px;
+            height: 60px;
+            background: var(--teal);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: var(--card-shadow);
+        }
+
+        select {
+            padding: 10px 14px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        /* Stories grid */
+        .stories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--gap);
+            margin-top: 18px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: var(--radius);
+            padding: 14px;
+            box-shadow: var(--card-shadow);
+            display: flex;
+            flex-direction: column;
+            min-height: 150px;
+            width: 260px;
+        }
+
+        .card .thumb {
+            height: 120px;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--light-yellow), var(--teal));
+            display: flex;
+            align-items: flex-end;
+            padding: 8px;
+            color: #2b2b2b;
+            font-weight: 700
+        }
+
+        .card h3 {
+            margin: 10px 0 6px;
+            font-size: 16px
+        }
+
+        .card p {
+            margin: 0 0 10px;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.3
+        }
+
+        .meta {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-size: 13px;
+            color: #666
+        }
+
+        .meta .likes {
+            display: inline-flex;
+            gap: 6px;
+            align-items: center
+        }
+
+        /* VS separator */
+        .vs {
+            font-weight: 900;
+            font-size: 28px;
+            color: var(--salmon);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            padding: 0 10px;
+            user-select: none;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 0.7;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Footer buttons */
+        .actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            margin: 26px 0 40px
+        }
+
+        .btn {
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-weight: 700
+        }
+
+        .btn.primary {
+            background: var(--salmon);
+            color: #fff
+        }
+
+        .btn.ghost {
+            background: transparent;
+            border: 2px solid rgba(0, 0, 0, 0.06)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <!-- Navbar -->
+        <header class="navbar">
+            <div class="brand">
+                <div class="logo">Golpora</div>
+                <div style="display:flex;flex-direction:column">
+                    <div style="font-size:14px; color:#444; font-weight:700">Write your story</div>
+                    <div style="font-size:12px; color:#777">Share your short fiction, memoir or scene</div>
+                </div>
+            </div>
+
+            <div class="right-controls">
+                <button class="write-btn">+ New Story</button>
+                <div class="profile">
+                    <div class="avatar">G</div>
+                    <div style="font-size:13px; color:#333">Nafiul</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Submenu -->
+        <nav class="subnav">
+            <a href="index.html">Home</a>
+            <a href="stories.html">Stories</a>
+            <a href="doc.html">Documentary</a>
+            <a href="battle1.html" class="active">Battle</a>
+        </nav>
+
+        <!-- Caption -->
+        <div class="caption">🔥 Choose your warriors and start the ultimate Story Battle!</div>
+
+        <!-- Selection -->
+        <div class="selection">
+            <div class="small-box" id="countBox">0</div>
+            <select id="storySelect" onchange="addStory()">
+                <option value="">-- Select Story --</option>
+                <option value="শহরের শেষ বাস|রাতের ভেতরে শহর যেন শেষ হয়ে এসেছে...|❤ 124|👁️ 3.1k">Story 1 — Score 8.5
+                </option>
+                <option value="চিঠি না আসা দিন|চিঠিটা যে তাওড়ানোর মতো ছিল...|❤ 89|👁️ 1.2k">Story 2 — Score 7.9</option>
+                <option value="নদীর নাম|নদীটা চুপ করে বইছে—কারো কানে ...|❤ 43|👁️ 712">Story 3 — Score 9.0</option>
+            </select>
+        </div>
+
+        <!-- Selected Stories -->
+        <section class="stories" id="selectedStories"></section>
+
+        <!-- Footer Actions -->
+        <div class="actions">
+            <button class="btn primary" onclick="location.href='battle2.html'">⚔️ Start Battle</button>
+            <button class="btn ghost" onclick="location.href='index.html'">← Back to Homepage</button>
+        </div>
+    </div>
+
+    <script>
+        let selected = [];
+        function addStory() {
+            const select = document.getElementById("storySelect");
+            const value = select.value;
+            if (value && !selected.includes(value)) {
+                selected.push(value);
+                updateUI();
+            }
+            select.value = "";
+        }
+
+        function updateUI() {
+            const container = document.getElementById("selectedStories");
+            container.innerHTML = "";
+            selected.forEach((item, idx) => {
+                const [title, desc, likes, views] = item.split("|");
+                const card = document.createElement("article");
+                card.className = "card";
+                card.innerHTML = `
+          <div class="thumb">${idx + 1} ${title}</div>
+          <h3>${title}</h3>
+          <p>${desc}</p>
+          <div class="meta">
+            <div class="likes">${likes}</div>
+            <div>${views}</div>
+          </div>
+        `;
+                container.appendChild(card);
+
+                // Add "VS" between cards
+                if (idx < selected.length - 1) {
+                    const vs = document.createElement("div");
+                    vs.className = "vs";
+                    vs.textContent = "⚔️ VS ⚔️";
+                    container.appendChild(vs);
+                }
+            });
+            document.getElementById("countBox").textContent = selected.length;
+        }
+    </script>
+</body>
+
+</html>
